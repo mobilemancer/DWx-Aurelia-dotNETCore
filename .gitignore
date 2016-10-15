@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/DWx.Webb/wwwroot/scripts/app-bundle.js
+/DWx.Webb/wwwroot/scripts/app-bundle.js.map
+/DWx.Webb/wwwroot/scripts/vendor-bundle.js

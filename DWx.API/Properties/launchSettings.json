@@ -18,9 +18,9 @@
     },
     "DWx.API": {
       "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/values",
-      "environmentVariables": {
+      "launchBrowser": false,
+      "launchUrl": "",
+      "environmentVariables": {       
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }

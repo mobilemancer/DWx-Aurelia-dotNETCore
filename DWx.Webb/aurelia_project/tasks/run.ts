@@ -3,7 +3,7 @@ import * as browserSync from 'browser-sync';
 import * as historyApiFallback from 'connect-history-api-fallback/lib';
 import * as project from '../aurelia.json';
 import build from './build';
-import {CLIOptions} from 'aurelia-cli';
+import { CLIOptions, build } from 'aurelia-cli';
 
 function onChange(path) {
   console.log(`File Changed: ${path}`);
@@ -24,7 +24,7 @@ let serve = gulp.series(
       logLevel: 'silent',
       server: {
         baseDir: ['.'],
-        middleware: [historyApiFallback(), function(req, res, next) {
+        middleware: [historyApiFallback(), function (req, res, next) {
           res.setHeader('Access-Control-Allow-Origin', '*');
           next();
         }]
@@ -43,7 +43,7 @@ let refresh = gulp.series(
   reload
 );
 
-let watch = function() {
+let watch = function () {
   gulp.watch(project.transpiler.source, refresh).on('change', onChange);
   gulp.watch(project.markupProcessor.source, refresh).on('change', onChange);
   gulp.watch(project.cssProcessor.source, refresh).on('change', onChange);
@@ -52,12 +52,17 @@ let watch = function() {
 let run;
 
 if (CLIOptions.hasFlag('watch')) {
+  //  run = gulp.series(
+  //     serve,
+  //     watch
+  //   );
   run = gulp.series(
-    serve,
+    build,
     watch
   );
 } else {
-  run = serve;
+  // run = serve;
+  run = build;
 }
 
 export default run;

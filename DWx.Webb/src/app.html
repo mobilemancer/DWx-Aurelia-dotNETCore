@@ -1,3 +1,11 @@
 <template>
-  <h1>${message}</h1>
+	<h1>${header}</h1>
+
+	<div repeat.for="droid of droids">
+		<div>
+			<span>ID: ${droid.id}</span> <span>Name: ${droid.name}</span>
+		</div>
+		<div>Model: ${droid.productSeries}</div>
+    <br>
+	</div>
 </template>

@@ -116,6 +116,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "aurelia-fetch-client",
           {
             "name": "text",
             "path": "../wwwroot\\scripts/text"

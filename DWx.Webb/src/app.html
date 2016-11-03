@@ -5,7 +5,28 @@
 		<div>
 			<span>ID: ${droid.id}</span> <span>Name: ${droid.name}</span>
 		</div>
-		<div>Model: ${droid.productSeries}</div>
-    <br>
+		<div>
+			<span>Model: ${droid.productSeries}</span> <span>Height: ${droid.height}</span>
+		</div>
+		<br>
 	</div>
 </template>
+
+<!--<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Product Series</th>
+				<th>Height</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr repeat.for="droid of droids">
+				<td>${droid.id}</td>
+				<td>${droid.name}</td>
+				<td>${droid.productSeries}</td>
+				<td>${droid.height}</td>
+			</tr>
+		</tbody>
+	</table>-->

@@ -3,8 +3,7 @@ import { autoinject } from 'aurelia-framework';
 
 @autoinject
 export class App {
-    public message = 'More to come!';
-    public header = 'Droids!';
+    public header = 'Droids';
     public droids = [];
 
     constructor(private http: HttpClient) {

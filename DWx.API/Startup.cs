@@ -39,7 +39,6 @@ namespace DWx.API
                 options.AddPolicy("AureliaSPA", corsBuilder.Build());
             });
 
-
             // Add framework services.
             services.AddMvc();
 

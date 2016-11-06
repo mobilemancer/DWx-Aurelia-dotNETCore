@@ -1,32 +1,6 @@
 <template>
+	<require from="./resources/elements/droid-tile"></require>
 	<h1>${header}</h1>
 
-	<div repeat.for="droid of droids">
-		<div>
-			<span>ID: ${droid.id}</span> <span>Name: ${droid.name}</span>
-		</div>
-		<div>
-			<span>Model: ${droid.productSeries}</span> <span>Height: ${droid.height}</span>
-		</div>
-		<br>
-	</div>
+	<droid-tile droid.bind="droid" repeat.for="droid of droids"></droid-tile>
 </template>
-
-<!--<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Product Series</th>
-				<th>Height</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr repeat.for="droid of droids">
-				<td>${droid.id}</td>
-				<td>${droid.name}</td>
-				<td>${droid.productSeries}</td>
-				<td>${droid.height}</td>
-			</tr>
-		</tbody>
-	</table>-->

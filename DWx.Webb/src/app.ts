@@ -1,24 +1,13 @@
-import { HttpClient } from 'aurelia-fetch-client';
 import { autoinject } from 'aurelia-framework';
+import { RouterConfiguration, Router } from 'aurelia-router';
 
 @autoinject
 export class App {
-    public header = 'Droids';
-    public droids = [];
 
-    constructor(private http: HttpClient) {
-        console.log("Init App.ts");
-        http.configure(config => {
-            config
-                .useStandardConfiguration()
-                .withBaseUrl('http://localhost:5005/api/droids');
-        });
-    }
-
-    activate() {
-        console.log("Fetching droids");
-        return this.http.fetch("")
-            .then(response => response.json())
-            .then(droids => this.droids = droids);
+    configureRouter(config: RouterConfiguration, router: Router): void {
+        config.title = 'Main';
+        config.map([
+            { route: ['', 'droids'], name: 'droids', moduleId: 'views/droids/droids-list', title: 'droids' }
+        ]);
     }
 }

@@ -1,4 +1,4 @@
-import {bindable} from 'aurelia-framework';
+import { bindable, autoinject } from 'aurelia-framework';
 
 export class DroidTile {
   @bindable droid;

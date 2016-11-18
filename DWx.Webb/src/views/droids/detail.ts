@@ -3,7 +3,6 @@ import { HttpClient } from 'aurelia-fetch-client';
 
 @autoinject
 export class Detail {
-    public id: number;
     public droid: any;
 
     constructor(private http: HttpClient) {
@@ -14,13 +13,9 @@ export class Detail {
         });
     }
 
-
     activate(params, routeConfig, $navigationInstruction) {
-        this.id = params.id;
-
-        return this.http.fetch(this.id.toString())
+        this.http.fetch(params.id)
             .then(response => response.json())
             .then(droid => this.droid = droid);
-
     }
 }

@@ -15,10 +15,20 @@
     <div>
         Imperial Contract: ${droid.imperialContractId}
     </div>
-    <div>
-        Equipment: ${droid.equipment.length>0}
+    <div show.bind="droid.equipment.length>0">
+        Equipment:
+        <ul>
+            <li repeat.for="item of droid.equipment">
+                ${item}
+            </li>
+        </ul>
     </div>
-    <div>
-        Armaments: ${droid.armaments.length>0}
+    <div show.bind="droid.armaments.length>0">
+        Armaments:
+        <ul>
+            <li repeat.for="item of droid.armaments">
+                ${item}
+            </li>
+        </ul>
     </div>
 </template>

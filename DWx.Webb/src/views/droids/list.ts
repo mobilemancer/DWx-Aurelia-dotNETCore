@@ -1,6 +1,6 @@
 import { Router } from 'aurelia-router';
 import { HttpClient } from 'aurelia-fetch-client';
-import { bindable, autoinject } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 
 @autoinject
 export class List {
@@ -23,7 +23,6 @@ export class List {
 
   // click handlers
   tileClick(droid: any): void {
-    // this.router.navigateToRoute('droidInfo', { id: droid.id }, {absolute:true});
     this.router.navigateToRoute('droidInfo', { id: droid.id });
   }
 }

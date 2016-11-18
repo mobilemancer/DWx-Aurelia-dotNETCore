@@ -1,11 +1,12 @@
+import { Router } from 'aurelia-router';
 import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
 
 @autoinject
 export class Delete {
-    public id: number;
+    public droid: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         http.configure(config => {
             config
                 .useStandardConfiguration()
@@ -14,22 +15,20 @@ export class Delete {
     }
 
     activate(params, routeConfig, $navigationInstruction) {
-        this.id = params.id;
+        this.http.fetch(params.id)
+            .then(response => response.json())
+            .then(droid => this.droid = droid);
     }
 
     public deleteDroid(): void {
-
         let request = {
             method: "delete"
         };
 
-        this.http.fetch(this.id.toString(), request).
+        this.http.fetch(this.droid.id.toString(), request).
             then(response => {
-                alert(response);
+                alert("Droid deleted!");
+                this.router.navigateToRoute('droids');
             });
-
-        // .then(response => response.json())
-        // .then(droid => this.droid = droid);
-
     }
 }

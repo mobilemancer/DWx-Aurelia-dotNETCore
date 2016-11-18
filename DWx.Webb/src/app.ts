@@ -8,9 +8,9 @@ export class App {
     configureRouter(config: RouterConfiguration, router: Router): void {
         this.router = router;
 
-        config.title = 'Main';
+        config.title = 'Droid Worx';
         config.map([
-            { route: [''], name: 'home', moduleId: 'views/home/index', title: 'Home', nav: 0 },
+            { route: ['', 'home'], name: 'home', moduleId: 'views/home/index', title: 'Home', nav: 0 },
             { route: 'droids', name: 'droids', moduleId: 'views/droids/list', title: 'Droids', nav: 1 },
             {
                 route: 'droids/:id',

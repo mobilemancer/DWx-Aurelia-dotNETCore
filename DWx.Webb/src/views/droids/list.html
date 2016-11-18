@@ -2,5 +2,5 @@
   <require from="./../../resources/elements/droid-tile.html"></require>
   <h1>${header}</h1>
 
-  <droid-tile repeat.for="droid of droids" droid.bind="droid"></droid-tile>
+  <droid-tile repeat.for="droid of droids" droid.bind="droid" click.delegate="tileClick(droid)"></droid-tile>
 </template>

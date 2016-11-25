@@ -1,10 +1,12 @@
 <template bindable="router">
-  <h1>${router.title}</h1>
-  <nav>
-    <ul>
-      <li repeat.for="row of router.navigation">
-        <a href.bind="row.href">${row.title}</a>
-      </li>
-    </ul>
-  </nav>
+  <div class="header">
+    <h1>${router.title}</h1>
+    <nav>
+      <ul>
+        <li repeat.for="row of router.navigation">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>

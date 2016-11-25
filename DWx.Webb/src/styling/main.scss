@@ -1,5 +1,6 @@
-@import "../../styles/bourbon/bourbon";
-@import "../../styles/bourbon-bitters/bitters";
-@import "../../styles/bourbon-neat/neat";
-
-@import "components/all";
+@import "./external/normalize/normalize";
+@import "./external/bourbon/bourbon";
+@import "./external/bourbon-bitters/bitters";
+@import "./external/bourbon-neat/neat";
+@import "./globals/colors";
+@import "./components/all";

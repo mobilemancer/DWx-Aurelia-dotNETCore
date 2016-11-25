@@ -39,6 +39,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-typescript-preprocessor": "^0.2.1",
     "minimatch": "^3.0.2",
+    "normalize.css": "^5.0.0",
     "through2": "^2.0.1",
     "tslint": "^3.11.0",
     "typescript": ">=1.9.0-dev || ^2.0.0",

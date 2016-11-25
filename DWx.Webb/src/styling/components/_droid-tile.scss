@@ -1,0 +1,23 @@
+droid-tile {
+  @include outer-container;
+
+  .tile {
+    @include span-columns(12);
+    margin: 16px 0 16px 0;
+    padding: 16px;
+    background-color: $color-tertiary-neutral;
+    color: $color-tertiary-lighter;
+
+    .row {
+      @include row();
+
+      .first {
+        @include span-columns(5);
+      }
+
+      .second {
+        @include span-columns(7);
+      }
+    }
+  }
+}

@@ -1,6 +1,13 @@
 page-header {
+  .header {
+    background-color: $color-primary-neutral;
+  }
+
   h1 {
     font-size: 24px;
+    color: $color-primary-lightest;
+    padding: 16px;
+    margin: 0;
   }
 
   ul {
@@ -8,23 +15,28 @@ page-header {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: $color-secondary-neutral;
   }
 
   li {
-    float: left;
+    float: right;
   }
 
   li a {
     display: block;
-    color: white;
+    color: $color-secondary-lightest;
     text-align: center;
-    padding: 14px 16px;
+    padding: 8px 8px;
     text-decoration: none;
   }
 
-  /* Change the link color to #111 (black) on hover */
   li a:hover {
-    background-color: #111;
+    background-color: $color-secondary-lighter;
+    color: $color-secondary-lightest;
+  }
+
+  li a:visited,
+  li a:focus {
+    color: $color-secondary-lightest;
   }
 }

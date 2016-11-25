@@ -1,8 +1,22 @@
 <template bindable="droid">
-  <div>
-    <span>ID: ${droid.id}</span> <span>Name: ${droid.name}</span>
-  </div>
-  <div>
-    <span>Model: ${droid.productSeries}</span> <span>Height: ${droid.height}</span>
+  <div class="tile">
+    <div class="row">
+      <div class="first">
+        <span class="label">ID:</span><span class="value"> ${droid.id}</span>
+      </div>
+      <div class="second">
+        <span class="label">Name:</span><span class="value"> ${droid.name}</span>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="first">
+          <span class="label">Model:</span><span class="value">${droid.productSeries}</span>
+        </div>
+        <div class="second">
+          <span class="label">Height:</span><span class="value">${droid.height}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

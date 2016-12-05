@@ -32,7 +32,7 @@ namespace DWx.API
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
-            corsBuilder.WithOrigins("http://localhost:5000");
+            corsBuilder.WithOrigins("http://localhost:5000", "http://localhost:9876");
             corsBuilder.AllowCredentials();
             services.AddCors(options =>
             {

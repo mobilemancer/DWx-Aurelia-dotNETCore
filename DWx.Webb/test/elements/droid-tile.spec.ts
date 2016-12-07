@@ -18,7 +18,6 @@ describe("droid-tile component test", () => {
 
     it("should render name", done => {
         component.create(bootstrap).then(() => {
-            // console.log(document);
             let elem = document.querySelector(".name");
             expect(elem.innerHTML).toBe("R2-D2");
             done();

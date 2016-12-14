@@ -16,8 +16,27 @@ export class Network {
     }
 
     public async request(endPoint: string, request?: RequestInit): Promise<NetworkResponse> {
-        let fetchResponse = await this.http.fetch(endPoint, request);
-        let response = this.copyBase(fetchResponse);
+        var response: any;
+        try {
+            var fetchResponse = await this.http.fetch(endPoint, request);
+        } catch (error) {
+            if (!!error.status) {
+                fetchResponse = error;
+            } else {
+                response = {
+                    hasData: undefined,
+                    ok: false,
+                    statusText: error.message,
+                    status: undefined,
+                    data: undefined,
+                    url: undefined,
+                    type: undefined
+                };
+                return response;
+            }
+        }
+
+        response = this.copyBase(fetchResponse);
 
         if (fetchResponse.status >= 200 && fetchResponse.status < 300
             && fetchResponse.status !== 204 && fetchResponse.status !== 205) {
@@ -32,12 +51,13 @@ export class Network {
         return response;
     }
 
+
     private copyBase(fetchResponse: Response): NetworkResponse {
         let response: NetworkResponse = {
             hasData: false,
             ok: fetchResponse.ok,
-            status: fetchResponse.statusText,
-            statusCode: fetchResponse.status,
+            statusText: fetchResponse.statusText.toLowerCase(),
+            status: fetchResponse.status,
             data: undefined,
             url: fetchResponse.url,
             type: fetchResponse.type
@@ -55,8 +75,8 @@ export interface NetworkResponse {
     hasData: boolean;
     data: any;
     ok: boolean;
-    status: string;
-    statusCode: number;
+    statusText: string;
+    status: number;
     url: string;
     type: string;
 }

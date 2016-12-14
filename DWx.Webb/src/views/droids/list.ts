@@ -13,7 +13,7 @@ export class List {
 
   async activate() {
     let response: NetworkResponse = await this.network.request("http://localhost:5005/api/droids");
-    if (response.status === "OK" && response.hasData) {
+    if (response.ok && response.hasData) {
       this.droids = response.data;
     }
   }

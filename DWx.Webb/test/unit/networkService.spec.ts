@@ -4,50 +4,61 @@ import { Network, NetworkResponse } from "./../../src/utils/network";
 var response;
 
 describe('the service', () => {
-  // beforeEach(function (done) {
-  //   // console.log("beforeEach");
-  //   // getStuff(done);
-  // });
 
-  it('handles http 200', (done) => {
-    let url = "http://httpstat.us/200";
+  it('handles http 200 - ok (without data)', (done) => {
+    let url = "http://httpbin.org/status/200";
 
     let expected: NetworkResponse = {
       hasData: false,
       ok: true,
-      status: "OK",
-      statusCode: 200,
+      statusText: "ok",
+      status: 200,
       data: undefined,
-      url: undefined,
-      type: undefined
+      url: url,
+      type: "cors"
     };
 
     new Network(new HttpClient()).request(url).then((response) => {
-      // expect(response).toBe(expected);
-      expect(response).toBeDefined();
+      expect(response).toEqual(jasmine.objectContaining(expected));
       done();
     });
   });
 
 
-  it('handles http 200-2', (done) => {
-    let url =
-      "http://localhost:5005/api/droids";
-    // "http://httpstat.us/200";
+  it('handles http 200 - ok (with data)', (done) => {
+    let url = "http://localhost:5005/api/droids";
 
-    let expected: NetworkResponse = {
-      hasData: false,
+    let expected = {
+      hasData: true,
       ok: true,
-      status: "OK",
-      statusCode: 200,
-      data: undefined,
-      url: undefined,
-      type: undefined
+      statusText: "ok",
+      status: 200,
+      url: url,
+      type: "cors"
     };
 
     new Network(new HttpClient()).request(url).then((response) => {
-      // expect(response).toBe(expected);
-      expect(response).toBeDefined();
+      expect(response).toEqual(jasmine.objectContaining(expected));
+      done();
+    });
+  });
+
+
+  it('handles http 404 - not found', (done) => {
+    let url = "http://httpbin.org/status/404";
+
+    let expected: NetworkResponse = {
+      hasData: false,
+      ok: false,
+      statusText: "not found",
+      status: 404,
+      data: undefined,
+      url: url,
+      type: "cors"
+    };
+
+    new Network(new HttpClient()).request(url).then((response) => {
+      expect(response).toEqual(jasmine.objectContaining(expected));
       done();
     });
   });
@@ -57,15 +68,14 @@ describe('the service', () => {
     let expectedResponse: NetworkResponse = {
       hasData: false,
       ok: true,
-      status: "OK",
-      statusCode: 200,
+      statusText: "ok",
+      status: 200,
       data: undefined,
       url: "http://test.com",
       type: "basic"
     };
 
-
-    let mockResponse = { //: Response = new Response();
+    let mockResponse = {
       hasData: false,
       ok: true,
       status: 200,
@@ -87,12 +97,10 @@ describe('the service', () => {
       text: undefined
     }
 
-    dump(mockResponse);
+    let network = new Network(undefined);
+    let result = network.testObject.copyBase(mockResponse as Response);
 
-    let nw = new Network(undefined);
-    let res = nw.testObject.copyBase(mockResponse as Response);
-
-    expect(expectedResponse).toEqual(res);
+    expect(expectedResponse).toEqual(result);
   });
 
 

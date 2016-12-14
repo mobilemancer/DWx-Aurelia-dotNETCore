@@ -5,7 +5,10 @@ describe("droid-tile component test", () => {
     let component;
     let viewModel = {
         droid: {
-            name: "R2-D2"
+            id: 55,
+            name: "R2-D2",
+            productSeries: "R-Series",
+            height: 96
         }
     };
 
@@ -16,10 +19,34 @@ describe("droid-tile component test", () => {
             .boundTo(viewModel);
     });
 
+    it("should render id", done => {
+        component.create(bootstrap).then(() => {
+            let elem = document.querySelector(".t_id");
+            expect(elem.innerHTML).toBe("55");
+            done();
+        })
+    });
+
     it("should render name", done => {
         component.create(bootstrap).then(() => {
-            let elem = document.querySelector(".name");
+            let elem = document.querySelector(".t_name");
             expect(elem.innerHTML).toBe("R2-D2");
+            done();
+        })
+    });
+
+    it("should render product series", done => {
+        component.create(bootstrap).then(() => {
+            let elem = document.querySelector(".t_model");
+            expect(elem.innerHTML).toBe("R-Series");
+            done();
+        })
+    });
+
+    it("should render height", done => {
+        component.create(bootstrap).then(() => {
+            let elem = document.querySelector(".t_height");
+            expect(elem.innerHTML).toBe("96");
             done();
         })
     });

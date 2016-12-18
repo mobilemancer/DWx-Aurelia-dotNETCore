@@ -22,7 +22,7 @@ describe("droid-tile component test", () => {
     it("should render id", done => {
         component.create(bootstrap).then(() => {
             let elem = document.querySelector(".t_id");
-            expect(elem.innerHTML).toBe("55");
+            expect(elem.innerHTML).toBe(viewModel.droid.id.toString());
             done();
         })
     });
@@ -30,7 +30,7 @@ describe("droid-tile component test", () => {
     it("should render name", done => {
         component.create(bootstrap).then(() => {
             let elem = document.querySelector(".t_name");
-            expect(elem.innerHTML).toBe("R2-D2");
+            expect(elem.innerHTML).toBe(viewModel.droid.name);
             done();
         })
     });
@@ -38,7 +38,7 @@ describe("droid-tile component test", () => {
     it("should render product series", done => {
         component.create(bootstrap).then(() => {
             let elem = document.querySelector(".t_model");
-            expect(elem.innerHTML).toBe("R-Series");
+            expect(elem.innerHTML).toBe(viewModel.droid.productSeries);
             done();
         })
     });
@@ -46,7 +46,7 @@ describe("droid-tile component test", () => {
     it("should render height", done => {
         component.create(bootstrap).then(() => {
             let elem = document.querySelector(".t_height");
-            expect(elem.innerHTML).toBe("96");
+            expect(elem.innerHTML).toBe(viewModel.droid.height.toString());
             done();
         })
     });

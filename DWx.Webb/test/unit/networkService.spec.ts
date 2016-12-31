@@ -98,10 +98,9 @@ describe('the service', () => {
     }
 
     let network = new Network(undefined);
-    let result = network.testObject.copyBase(mockResponse as Response);
+    let result = network.__privateTestMethods.copyBase(mockResponse as Response);
 
     expect(expectedResponse).toEqual(result);
   });
-
 
 });

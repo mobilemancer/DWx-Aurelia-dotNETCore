@@ -66,7 +66,7 @@ export class Network {
         return response;
     }
 
-    public testObject = {
+    public __privateTestMethods = {
         copyBase: this.copyBase
     }
 }

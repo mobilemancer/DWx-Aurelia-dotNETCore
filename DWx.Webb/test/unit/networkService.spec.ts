@@ -44,24 +44,24 @@ describe('the service', () => {
   });
 
 
-  it('handles http 404 - not found', (done) => {
-    let url = "http://httpbin.org/status/404";
+  // it('handles http 404 - not found', (done) => {
+  //   let url = "http://httpbin.org/status/404";
 
-    let expected: NetworkResponse = {
-      hasData: false,
-      ok: false,
-      statusText: "not found",
-      status: 404,
-      data: undefined,
-      url: url,
-      type: "cors"
-    };
+  //   let expected: NetworkResponse = {
+  //     hasData: false,
+  //     ok: false,
+  //     statusText: "not found",
+  //     status: 404,
+  //     data: undefined,
+  //     url: url,
+  //     type: "cors"
+  //   };
 
-    new Network(new HttpClient()).request(url).then((response) => {
-      expect(response).toEqual(jasmine.objectContaining(expected));
-      done();
-    });
-  });
+  //   new Network(new HttpClient()).request(url).then((response) => {
+  //     expect(response).toEqual(jasmine.objectContaining(expected));
+  //     done();
+  //   });
+  // });
 
 
   it('copies base properties', () => {

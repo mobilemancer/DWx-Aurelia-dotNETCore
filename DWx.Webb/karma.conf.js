@@ -27,7 +27,8 @@ module.exports = function(config) {
       typescript: require('typescript'),
       options: tsconfig.compilerOptions
     },
-    reporters: ['progress'],
+    reporters: ['spec'],
+    // plugins: ['karma-spec-reporter'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

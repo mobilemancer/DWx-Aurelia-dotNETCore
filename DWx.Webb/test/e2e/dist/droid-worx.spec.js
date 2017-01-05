@@ -1,4 +1,4 @@
-describe('App', function () {
+describe('DroidWorx', function () {
     beforeEach(function () {
         browser.loadAndWaitForAureliaPage('http://localhost:5000');
     });

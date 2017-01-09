@@ -3,12 +3,12 @@ import { Network, NetworkResponse } from "./../../src/utils/network";
 
 var response;
 
-describe('the service', () => {
+describe('network service', () => {
 
   it('handles http 200 - ok (without data)', (done) => {
-    let url = "http://httpbin.org/status/200";
+    const url = "http://httpbin.org/status/200";
 
-    let expected: NetworkResponse = {
+    const expected: NetworkResponse = {
       hasData: false,
       ok: true,
       statusText: "ok",
@@ -26,9 +26,9 @@ describe('the service', () => {
 
 
   it('handles http 200 - ok (with data)', (done) => {
-    let url = "http://localhost:5005/api/droids";
+    const url = "http://localhost:5005/api/droids";
 
-    let expected = {
+    const expected = {
       hasData: true,
       ok: true,
       statusText: "ok",
@@ -65,7 +65,7 @@ describe('the service', () => {
 
 
   it('copies base properties', () => {
-    let expectedResponse: NetworkResponse = {
+    const expectedResponse: NetworkResponse = {
       hasData: false,
       ok: true,
       statusText: "ok",
@@ -75,7 +75,7 @@ describe('the service', () => {
       type: "basic"
     };
 
-    let mockResponse = {
+    const mockResponse = {
       hasData: false,
       ok: true,
       status: 200,
@@ -97,8 +97,8 @@ describe('the service', () => {
       text: undefined
     }
 
-    let network = new Network(undefined);
-    let result = network.__privateTestMethods.copyBase(mockResponse as Response);
+    const network = new Network(undefined);
+    const result = network.__test.copyBase(mockResponse as Response);
 
     expect(expectedResponse).toEqual(result);
   });

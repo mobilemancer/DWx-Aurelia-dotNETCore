@@ -1,4 +1,4 @@
-describe('App', () => {
+describe('DroidWorx', () => {
     beforeEach(() => {
         browser.loadAndWaitForAureliaPage('http://localhost:5000');
     });
@@ -9,7 +9,7 @@ describe('App', () => {
     });
 
     it('should navigate to droids list', () => {
-        let nav = element(by.id('#/droids')).click();
+        const nav = element(by.id('#/droids')).click();
         browser.waitForRouterComplete();
 
         const title = browser.getTitle();

@@ -117,6 +117,34 @@ namespace DWx.Repository.Repository
                 }
             };
             repo.TryAdd(r2d2.Id, r2d2);
+
+            var bb8 = new Model.Droid
+            {
+                Id = id++,
+                Name = "BB-8",
+                ProductSeries = "BB Unit",
+                Height = 0.67M,
+                Armaments = new List<string>(),
+                Equipment = new List<string>
+                {
+                    "Liquid cable launchers",
+                    "Welding torch",
+                    "Holoprojector",
+                    "Arc welder"
+                }
+            };
+            repo.TryAdd(bb8.Id, bb8);
+
+            var k2so = new Model.Droid
+            {
+                Id = id++,
+                Name = "K-2SO",
+                ProductSeries = "KX Series Security Droid",
+                Height = 2.16M,
+                Armaments = new List<string>(),
+                Equipment = new List<string>()
+            };
+            repo.TryAdd(k2so.Id, k2so);
         }
     }
 }

@@ -1,34 +1,38 @@
 <template>
-    <h1>${droid.name}</h1>
-    <div>
-        ID: ${droid.id}
-    </div>
-    <div>
-        Height: ${droid.height}
-    </div>
-    <div>
-        Weight: ${droid.weight}
-    </div>
-    <div>
-        Product Series: ${droid.productSeries}
-    </div>
-    <div>
-        Imperial Contract: ${droid.imperialContractId}
-    </div>
-    <div show.bind="droid.equipment.length>0">
-        Equipment:
-        <ul>
-            <li repeat.for="item of droid.equipment">
-                ${item}
-            </li>
-        </ul>
-    </div>
-    <div show.bind="droid.armaments.length>0">
-        Armaments:
-        <ul>
-            <li repeat.for="item of droid.armaments">
-                ${item}
-            </li>
-        </ul>
+    <require from="./../../resources/attributes/faction-alignment"></require>
+
+    <div faction-alignment="${droid.imperialContractId}">
+        <h1>${droid.name}</h1>
+        <div>
+            ID: ${droid.id}
+        </div>
+        <div>
+            Height: ${droid.height}
+        </div>
+        <div>
+            Weight: ${droid.weight}
+        </div>
+        <div>
+            Product Series: ${droid.productSeries}
+        </div>
+        <div>
+            Imperial Contract: ${droid.imperialContractId}
+        </div>
+        <div show.bind="droid.equipment.length>0">
+            Equipment:
+            <ul>
+                <li repeat.for="item of droid.equipment">
+                    ${item}
+                </li>
+            </ul>
+        </div>
+        <div show.bind="droid.armaments.length>0">
+            Armaments:
+            <ul>
+                <li repeat.for="item of droid.armaments">
+                    ${item}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>

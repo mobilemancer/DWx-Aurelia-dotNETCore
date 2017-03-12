@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DWx.API", "DWx.API\DWx.API.xproj", "{8BC16FD7-4D7F-4562-9AB5-F75CC0CEF6FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWx.API", "DWx.API\DWx.API.csproj", "{8BC16FD7-4D7F-4562-9AB5-F75CC0CEF6FF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DWx.Webb", "DWx.Webb\DWx.Webb.xproj", "{F7EBD11C-44AB-41BE-A69F-7BC12D098419}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWx.Webb", "DWx.Webb\DWx.Webb.csproj", "{F7EBD11C-44AB-41BE-A69F-7BC12D098419}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DWx.Repository", "DWx.Repository\DWx.Repository.xproj", "{EEF83F7C-0A95-4427-903A-1112CD00E090}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWx.Repository", "DWx.Repository\DWx.Repository.csproj", "{EEF83F7C-0A95-4427-903A-1112CD00E090}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

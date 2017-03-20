@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
 namespace DWx.Webb
 {
-    public class Program
+  public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
+      var host = new WebHostBuilder()
+                .UseKestrel(options => options.UseHttps("KestrelCert.pfx", "mobilemancer"))
+                .UseUrls("https://localhost:5043")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
-            host.Run();
-        }
+      host.Run();
     }
+  }
 }

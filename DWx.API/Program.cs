@@ -9,11 +9,11 @@ namespace DWx.API
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseKestrel()
+                .UseKestrel(options => options.UseHttps("KestrelCert.pfx", "mobilemancer"))
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5005")
+                .UseUrls("https://localhost:5044")
                 .Build();
 
             host.Run();

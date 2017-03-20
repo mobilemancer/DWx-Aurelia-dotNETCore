@@ -12,7 +12,7 @@ export class List {
   constructor(private network: Network, private router: Router) { }
 
   async activate() {
-    let response: NetworkResponse = await this.network.request("http://localhost:5005/api/droids");
+    let response: NetworkResponse = await this.network.request("https://localhost:5044/api/droids");
     if (response.ok && response.hasData) {
       this.droids = response.data;
     }

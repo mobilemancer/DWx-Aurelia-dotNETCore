@@ -1,3 +1,4 @@
+import { StorageService } from './storageService';
 import { NetworkResponse } from './network';
 import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
@@ -17,6 +18,13 @@ export class Network {
 
     public async request(endPoint: string, request?: RequestInit): Promise<NetworkResponse> {
         var response: any;
+        if (!request) {
+            request = {};
+        }
+        if (StorageService.GetValue("id_token")) {
+            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("token");
+        }
+
         try {
             var fetchResponse = await this.http.fetch(endPoint, request);
         } catch (error) {

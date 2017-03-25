@@ -39,6 +39,8 @@ namespace DWx.API
                 options.AddPolicy("AureliaSPA", corsBuilder.Build());
             });
 
+            services.UseJwtBearerAuthentication();
+
             // Add framework services.
             services.AddMvc();
 
@@ -49,6 +51,15 @@ namespace DWx.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                Audience = "resource_server_1",
+                Authority = "http://localhost:50000/",
+                RequireHttpsMetadata = false
+            });
+
             app.UseCors("AureliaSPA");
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

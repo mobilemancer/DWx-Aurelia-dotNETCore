@@ -19,10 +19,10 @@ export class Network {
     public async request(endPoint: string, request?: RequestInit): Promise<NetworkResponse> {
         var response: any;
         if (!request) {
-            request = {};
+            request = { headers: {} };
         }
-        if (StorageService.GetValue("id_token")) {
-            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("token");
+        if (StorageService.GetValue("access_token")) {
+            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("access_token");
         }
 
         try {

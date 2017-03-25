@@ -13,7 +13,7 @@ export class App {
             var callback = location.hash;
             location.hash = "";
             this.handleCallBackHash(callback);
-            history.go(-4);
+            history.go(-3);
         }
     }
 
@@ -21,17 +21,26 @@ export class App {
 
         let fragments = hash.split('&');
         fragments.forEach(element => {
-            if (element.includes("code=")) {
+            if (element.startsWith('#')) {
+                element = element.substring(1);
+            }
+
+            if (element.startsWith("code=")) {
                 StorageService.SetValue("code", element.substring(element.indexOf("code=") + "code=".length));
             }
 
-            if (element.includes("id_token=")) {
+            if (element.startsWith("id_token=")) {
                 StorageService.SetValue("id_token", element.substring(element.indexOf("id_token=") + "id_token=".length));
             }
 
-            if (element.includes("token=")) {
+            if (element.startsWith("token=")) {
                 StorageService.SetValue("token", element.substring(element.indexOf("token=") + "token=".length));
             }
+
+            if (element.startsWith("access_token=")) {
+                StorageService.SetValue("access_token", element.substring(element.indexOf("access_token=") + "access_token=".length));
+            }
+
         });
     }
 
@@ -87,7 +96,7 @@ class AuthorizeStep {
     }
 
     private isLoggedIn() {
-        if (StorageService.GetValue("code")) {
+        if (StorageService.GetValue("access_token")) {
             return true;
         }
         return false;

@@ -54,9 +54,9 @@ namespace DWx.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("CD7TQJmvM4RNwYWZwfgzkHZ"));
-            //var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("1LTMzakihiRla_8z2BEJVXeWMqo"));
-            
+            //var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("CD7TQJmvM4RNwYWZwfgzkHZ"));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("a3QN0BZS7s4nN-BdrjbF0Y_LdMM"));
+
             var tokenValidationParameters = new TokenValidationParameters
             {
                 //// The signing key must match!

@@ -21,8 +21,8 @@ export class Network {
         if (!request) {
             request = { headers: {} };
         }
-        if (StorageService.GetValue("access_token")) {
-            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("access_token");
+        if (StorageService.GetValue("id_token")) {
+            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("id_token");
         }
 
         try {

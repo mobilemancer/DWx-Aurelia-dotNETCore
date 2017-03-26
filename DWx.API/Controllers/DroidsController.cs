@@ -1,5 +1,6 @@
 ﻿using DWx.Repository.DTO;
 using DWx.Repository.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DWx.API.Controllers
@@ -17,7 +18,7 @@ namespace DWx.API.Controllers
         /// Get all the droids
         /// </summary>
         /// <returns>all droids in the database</returns>
-        [HttpGet]
+        [Authorize, HttpGet]
         public IActionResult GetAll()
         {
             var droids = droidRepo.GetAll();

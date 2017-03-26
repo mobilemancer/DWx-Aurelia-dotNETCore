@@ -1,6 +1,7 @@
 import { StorageService } from './utils/storageService';
 import { autoinject } from 'aurelia-framework';
 import { RouterConfiguration, Router, Redirect } from 'aurelia-router';
+import { TokenType } from "./enums/tokenType";
 
 @autoinject
 export class App {
@@ -18,30 +19,47 @@ export class App {
     }
 
     private handleCallBackHash(hash: string) {
-
         let fragments = hash.split('&');
         fragments.forEach(element => {
             if (element.startsWith('#')) {
                 element = element.substring(1);
             }
 
-            if (element.startsWith("code=")) {
-                StorageService.SetValue("code", element.substring(element.indexOf("code=") + "code=".length));
+            var token = this.extractToken(element);
+            if (!!token) {
+                StorageService.SetValue(token.key, token.value);
             }
-
-            if (element.startsWith("id_token=")) {
-                StorageService.SetValue("id_token", element.substring(element.indexOf("id_token=") + "id_token=".length));
-            }
-
-            if (element.startsWith("token=")) {
-                StorageService.SetValue("token", element.substring(element.indexOf("token=") + "token=".length));
-            }
-
-            if (element.startsWith("access_token=")) {
-                StorageService.SetValue("access_token", element.substring(element.indexOf("access_token=") + "access_token=".length));
-            }
-
         });
+    }
+
+    private extractToken(tokenFragment: string): { key: string, value: string } {
+        if (tokenFragment.startsWith(TokenType[TokenType.code] + "=")) {
+            return {
+                key: TokenType[TokenType.code],
+                value: tokenFragment.substring(tokenFragment.indexOf(TokenType[TokenType.code] + "=") + TokenType[TokenType.code].length + 1)
+            };
+        }
+
+        if (tokenFragment.startsWith(TokenType[TokenType.id_token] + "=")) {
+            return {
+                key: TokenType[TokenType.id_token],
+                value: tokenFragment.substring(tokenFragment.indexOf(TokenType[TokenType.id_token] + "=") + TokenType[TokenType.id_token].length + 1)
+            };
+        }
+
+        if (tokenFragment.startsWith(TokenType[TokenType.token] + "=")) {
+            return {
+                key: TokenType[TokenType.token],
+                value: tokenFragment.substring(tokenFragment.indexOf(TokenType[TokenType.token] + "=") + TokenType[TokenType.token].length + 1)
+            };
+        }
+
+        if (tokenFragment.startsWith(TokenType[TokenType.access_token] + "=")) {
+            return {
+                key: TokenType[TokenType.access_token],
+                value: tokenFragment.substring(tokenFragment.indexOf(TokenType[TokenType.access_token] + "=") + TokenType[TokenType.access_token].length + 1)
+            };
+        }
     }
 
     configureRouter(config: RouterConfiguration, router: Router): void {

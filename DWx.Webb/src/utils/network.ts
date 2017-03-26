@@ -2,6 +2,7 @@ import { StorageService } from './storageService';
 import { NetworkResponse } from './network';
 import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
+import { TokenType } from "../enums/tokenType";
 
 @autoinject
 export class Network {
@@ -21,8 +22,9 @@ export class Network {
         if (!request) {
             request = { headers: {} };
         }
-        if (StorageService.GetValue("id_token")) {
-            request.headers['Authorization'] = 'Bearer ' + StorageService.GetValue("id_token");
+        const token = StorageService.GetValue(TokenType[TokenType.id_token]);
+        if (token) {
+            request.headers['Authorization'] = 'Bearer ' + token;
         }
 
         try {

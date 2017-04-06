@@ -22,7 +22,8 @@ export class Network {
         if (!request) {
             request = { headers: {} };
         }
-        const token = StorageService.GetValue(TokenType[TokenType.id_token]);
+        // const token = StorageService.GetValue(TokenType[TokenType.id_token]);
+        const token = StorageService.GetValue(TokenType[TokenType.access_token]);
         if (token) {
             request.headers['Authorization'] = 'Bearer ' + token;
         }

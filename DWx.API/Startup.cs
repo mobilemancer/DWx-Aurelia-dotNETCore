@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DWx.Repository.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -9,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -60,16 +56,18 @@ namespace DWx.API
             var tokenValidationParameters = new TokenValidationParameters
             {
                 //// The signing key must match!
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
+                //ValidateIssuerSigningKey = true,
+                //IssuerSigningKey = signingKey,
 
                 //// Validate the JWT Issuer (iss) claim
+                //ValidateIssuer = true,
                 ValidateIssuer = false,
-                ValidIssuer = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
+                //ValidIssuer = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
 
                 //// Validate the JWT Audience (aud) claim
-                ValidateAudience = false,
-                ValidAudience = "233b8b15-868c-4125-b954-e64ae7c8e3a8",
+                ValidateAudience = true,
+                //ValidateAudience = false,
+                //ValidAudience = "233b8b15-868c-4125-b954-e64ae7c8e3a8",
 
                 // Validate the token expiry
                 ValidateLifetime = true,
@@ -77,33 +75,30 @@ namespace DWx.API
                 // If you want to allow a certain amount of clock drift, set that here:
                 ClockSkew = TimeSpan.Zero
             };
-            
+
 
             //app.UseJwtBearerAuthentication(new JwtBearerOptions
             //{
-            //    AutomaticAuthenticate = true,
-            //    AutomaticChallenge = true,
-            //    TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = true,
-            //        ValidIssuer = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
-
-            //        ValidateAudience = true,
-            //        ValidAudience = "233b8b15-868c-4125-b954-e64ae7c8e3a8",
-
-            //        ValidateLifetime = true,
-            //    }
+            //    Authority = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
+            //    Audience = "233b8b15-868c-4125-b954-e64ae7c8e3a8"
             //});
 
 
 
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            //var tokenValidationParameters = new TokenValidationParameters()
+            //{
+            //    // If you wish to restrict access to specific organizations, you must configure a list of valid issuers
+            //    ValidateIssuer = false
+            //};
+
+            var options = new JwtBearerOptions
             {
-                Authority = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
-                Audience = "233b8b15-868c-4125-b954-e64ae7c8e3a8"
-            });
+                Audience = Configuration["Authentication:MicrosoftIdentity:ClientId"],
+                Authority = Configuration["Authentication:MicrosoftIdentity:Authority"],
+                TokenValidationParameters = tokenValidationParameters
+            };
 
-
+            app.UseJwtBearerAuthentication(options);
 
             app.UseCors("AureliaSPA");
 

@@ -1,26 +1,27 @@
+import { ExpectedResponseType } from './../../enums/expectedResponseType';
 import { autoinject } from 'aurelia-dependency-injection';
 import { Network, NetworkResponse } from './../../utils/network';
 import { TokenType } from "../../enums/tokenType";
 
+const GRAPH_ME = "https://graph.microsoft.com/v1.0/me";
+const GRAPH_ME_PHOTO_VALUE = "https://graph.microsoft.com/v1.0/me/photo/$value";
+
 @autoinject()
 export class Index {
     public destination: HTMLElement;
-    public profilePicture: HTMLElement;
+    public profilePicture: HTMLImageElement;
 
     constructor(private network: Network) { }
 
     async attached() {
-        // GET https://graph.microsoft.com/v1.0/me
-        let response: NetworkResponse = await this.network.request("https://graph.microsoft.com/v1.0/me", { headers: {} }, TokenType.access_token);
-        // if (response.ok && response.hasData) {
-        //     this.destination.innerText = response.data;
-        // }
+        let response: NetworkResponse =
+            await this.network.request(GRAPH_ME, { headers: {} }, TokenType.access_token);
 
-        // /me/photo/$value
-        let picture: NetworkResponse = await this.network.request("https://graph.microsoft.com/v1.0/me/photo/$value", { headers: {} }, TokenType.access_token);
-        // if (picture.ok && picture.hasData) {
-        //     this.profilePicture = picture.data;
-        // }
+        let picture: NetworkResponse =
+            await this.network.request(GRAPH_ME_PHOTO_VALUE, { headers: {} }, TokenType.access_token, ExpectedResponseType[ExpectedResponseType.blob]);
+        if (picture.ok && picture.hasData) {
+            this.profilePicture.src = URL.createObjectURL(picture.data);
+        }
 
     }
 

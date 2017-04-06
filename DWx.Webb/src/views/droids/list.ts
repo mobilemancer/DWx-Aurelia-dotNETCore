@@ -2,6 +2,7 @@ import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
 import { Network, NetworkResponse } from './../../utils/network';
 import { Router } from 'aurelia-router';
+import { TokenType } from "../../enums/tokenType";
 
 @autoinject
 export class List {
@@ -12,7 +13,7 @@ export class List {
   constructor(private network: Network, private router: Router) { }
 
   async activate() {
-    let response: NetworkResponse = await this.network.request("https://localhost:5044/api/droids");
+    let response: NetworkResponse = await this.network.request("https://localhost:5044/api/droids", {}, TokenType.id_token);
     if (response.ok && response.hasData) {
       this.droids = response.data;
     }

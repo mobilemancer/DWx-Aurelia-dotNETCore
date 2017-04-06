@@ -17,15 +17,21 @@ export class Network {
         }
     }
 
-    public async request(endPoint: string, request?: RequestInit): Promise<NetworkResponse> {
+    public async request(endPoint: string, request?: RequestInit, authorizationType?: TokenType | undefined): Promise<NetworkResponse> {
         var response: any;
-        if (!request) {
-            request = { headers: {} };
-        }
-        // const token = StorageService.GetValue(TokenType[TokenType.id_token]);
-        const token = StorageService.GetValue(TokenType[TokenType.access_token]);
-        if (token) {
-            request.headers['Authorization'] = 'Bearer ' + token;
+
+        if (authorizationType !== undefined) {
+            const token = StorageService.GetValue(TokenType[authorizationType]);
+            if (token) {
+                if (!request) {
+                    request = {};
+                }
+                if (!request.headers) {
+                    request.headers = {};
+                }
+
+                request.headers['Authorization'] = 'Bearer ' + token;
+            }
         }
 
         try {

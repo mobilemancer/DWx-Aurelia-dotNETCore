@@ -66,14 +66,26 @@
 
 // color palette
 // primary
-$color-primary-neutral: #403075;
-$color-primary-lightest: #887caf;
+// $color-primary-neutral: #403075;
+// $color-primary-lightest: #887caf;
+// // secondary
+// $color-secondary-neutral: #582a72;
+// $color-secondary-lighter: #764b8e;
+// $color-secondary-lightest: #9775aa;
+// //tertiary
+// $color-tertiary-neutral: #2e4372;
+// $color-tertiary-lighter: #7887ab;
+// $color-tertiary-darker: #162955;
+$color-primary-neutral: #9b27af;
+$color-primary-lightest: #ffffff;
+$color-primary-text: #ffffff;
 // secondary
-$color-secondary-neutral: #582a72;
-$color-secondary-lighter: #764b8e;
-$color-secondary-lightest: #9775aa;
+$color-secondary-neutral: #cf5ce2;
+$color-secondary-lighter: #ffffff;
+$color-secondary-lightest: #000000;
+$color-secondary-text: #000000;
 //tertiary
-$color-tertiary-neutral: #2e4372;
-$color-tertiary-lighter: #7887ab;
+$color-tertiary-neutral: #69007f;
+$color-tertiary-lighter: #ffffff;
+$color-tertiary-text: #ffffff;
 $color-tertiary-darker: #162955;
-

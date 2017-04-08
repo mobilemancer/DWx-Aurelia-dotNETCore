@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 600px;
+  height: 300px;
+  margin: auto;
+  border: 1px black solid;
+
+  .header {
+    width: 100%;
+    height: 40px;
+    background-color: $color-secondary-neutral;
+    color: $color-secondary-text;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      margin: $standard-gutter;
+      padding: $standard-gutter;
+    }
+  }
+}

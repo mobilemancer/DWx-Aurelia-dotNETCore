@@ -1,13 +1,16 @@
 droid-tile {
   @include outer-container;
+  display: block;
 
   .tile {
+    display: inline-block;
     width: 500px;
     min-height: 200px;
-    margin: $standard-gutter;
-    padding: $standard-gutter;
+    margin: $standard-gutter 0px $standard-gutter $standard-gutter;
+    padding: $standard-gutter 0px $standard-gutter $standard-gutter;
     background-color: $color-tertiary-neutral;
     color: $color-tertiary-text;
+    vertical-align: middle;
 
     .row {
       @include row();
@@ -24,5 +27,14 @@ droid-tile {
         @include span-columns(4);
       }
     }
+  }
+
+  img {
+    vertical-align: middle;
+    margin: $standard-gutter $standard-gutter$standard-gutter -5px;
+    border: 1px solid black;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
   }
 }

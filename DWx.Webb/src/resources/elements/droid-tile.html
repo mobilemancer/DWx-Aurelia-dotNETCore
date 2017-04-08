@@ -1,27 +1,25 @@
 <template bindable="droid">
-  <div class="tile">
-    <div class="row">
-      <div class="hero-text">
-        ${droid.name}
-      </div>
-    </div>
-    <!--<div class="row">
-      <div class="first">
-        <span class="label">ID: </span><span class="value t_id">${droid.id}</span>
-      </div>
-      <div class="second">
-        <span class="label">Name: </span><span class="value t_name">${droid.name}</span>
-      </div>
-    </div>-->
-    <div>
+
+  <div>
+    <div class="tile">
       <div class="row">
-        <div class="first">
-          <span class="label">Model: </span><span class="value t_model">${droid.productSeries}</span>
+        <div class="hero-text">
+          ${droid.name}
         </div>
-        <div class="second">
-          <span class="label">Height: </span><span class="value t_height">${droid.height}</span>
+      </div>
+      <div>
+        <div class="row">
+          <div class="first">
+            <span class="label">Model: </span><span class="value t_model">${droid.productSeries}</span>
+          </div>
+          <div class="second">
+            <span class="label">Height: </span><span class="value t_height">${droid.height}</span>
+          </div>
         </div>
       </div>
     </div>
+    <img src.bind='"images/droids/" + droid.name +".png"'>
   </div>
+
+  <!--<img src.bind=`./images/droids/${droid.name}.png`>-->
 </template>

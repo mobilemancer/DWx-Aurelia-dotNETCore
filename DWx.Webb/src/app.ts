@@ -5,16 +5,16 @@ import { TokenType } from "./enums/tokenType";
 
 @autoinject
 export class App {
-    public router: Router;
+    // public router: Router;
     public frame: HTMLFrameElement;
 
-    constructor() {
+    constructor(private router: Router) {
         //handle callback
         if (location.hash.includes("code=") || location.hash.includes("id_token=")) {
             var callback = location.hash;
             location.hash = "";
             this.handleCallBackHash(callback);
-            history.go(-3);
+            this.router.navigate('home');
         }
     }
 

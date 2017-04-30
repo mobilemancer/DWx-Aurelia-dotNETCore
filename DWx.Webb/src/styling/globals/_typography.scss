@@ -1,0 +1,25 @@
+$large-heading-size: 84px;
+$medium-heading-size: 34px;
+$heading-size: 26px;
+$large-copy-size: 40px;
+$copy-size: 24px;
+$regular-font-family: "Segoe UI", arial, sans-serif;
+
+body {
+  font-family: $regular-font-family;
+}
+
+.large-heading {
+  font-size: $large-heading-size;
+  font-weight: 100;
+  margin-bottom: $standard-gutter*2;
+}
+
+.large-copy {
+  font-size: $large-copy-size;
+  font-weight: 300;
+}
+
+.light {
+  color: white;
+}

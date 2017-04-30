@@ -76,21 +76,6 @@ namespace DWx.API
                 ClockSkew = TimeSpan.Zero
             };
 
-
-            //app.UseJwtBearerAuthentication(new JwtBearerOptions
-            //{
-            //    Authority = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
-            //    Audience = "233b8b15-868c-4125-b954-e64ae7c8e3a8"
-            //});
-
-
-
-            //var tokenValidationParameters = new TokenValidationParameters()
-            //{
-            //    // If you wish to restrict access to specific organizations, you must configure a list of valid issuers
-            //    ValidateIssuer = false
-            //};
-
             var options = new JwtBearerOptions
             {
                 Audience = Configuration["Authentication:MicrosoftIdentity:ClientId"],

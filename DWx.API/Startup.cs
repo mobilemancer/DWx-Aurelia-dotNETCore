@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DWx.Repository.Repository;
+﻿using DWx.Repository.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+
 
 namespace DWx.API
 {
@@ -39,7 +37,7 @@ namespace DWx.API
                 options.AddPolicy("AureliaSPA", corsBuilder.Build());
             });
 
-            services.UseJwtBearerAuthentication();
+            services.AddAuthorization();
 
             // Add framework services.
             services.AddMvc();

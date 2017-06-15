@@ -7,6 +7,9 @@
     "url": "???"
   },
   "license": "MIT",
+  "scripts": {
+    "build-test": "au build"
+  },
   "dependencies": {
     "aurelia-animator-css": "^1.0.0",
     "aurelia-bootstrapper": "^1.0.0",

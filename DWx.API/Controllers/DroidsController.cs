@@ -18,7 +18,7 @@ namespace DWx.API.Controllers
         /// Get all the droids
         /// </summary>
         /// <returns>all droids in the database</returns>
-        [Authorize, HttpGet]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var droids = droidRepo.GetAll();

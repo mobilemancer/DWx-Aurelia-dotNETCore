@@ -1,23 +1,40 @@
 droid-tile {
   @include outer-container;
+  display: block;
 
   .tile {
-    @include span-columns(12);
-    margin: 16px 0 16px 0;
-    padding: 16px;
+    display: inline-block;
+    width: 500px;
+    min-height: 200px;
+    margin: $standard-gutter 0px $standard-gutter $standard-gutter;
+    padding: $standard-gutter 0px $standard-gutter $standard-gutter;
     background-color: $color-tertiary-neutral;
-    color: $color-tertiary-lighter;
+    color: $color-tertiary-text;
+    vertical-align: middle;
 
     .row {
       @include row();
 
+      .hero-text {
+        font-size: 120%;
+      }
+
       .first {
-        @include span-columns(5);
+        @include span-columns(8);
       }
 
       .second {
-        @include span-columns(7);
+        @include span-columns(4);
       }
     }
+  }
+
+  img {
+    vertical-align: middle;
+    margin: $standard-gutter $standard-gutter$standard-gutter -5px;
+    border: 1px solid black;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
   }
 }

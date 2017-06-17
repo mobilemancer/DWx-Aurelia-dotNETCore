@@ -1,6 +1,9 @@
+import { ExpectedResponseType } from './../enums/expectedResponseType';
+import { StorageService } from './storageService';
 import { NetworkResponse } from './network';
 import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
+import { TokenType } from "../enums/tokenType";
 
 @autoinject
 export class Network {
@@ -15,8 +18,23 @@ export class Network {
         }
     }
 
-    public async request(endPoint: string, request?: RequestInit): Promise<NetworkResponse> {
+    public async request(endPoint: string, request?: RequestInit, authorizationType?: TokenType | undefined, dataType?: string | undefined): Promise<NetworkResponse> {
         var response: any;
+
+        if (authorizationType !== undefined) {
+            const token = StorageService.GetValue(TokenType[authorizationType]);
+            if (token) {
+                if (!request) {
+                    request = {};
+                }
+                if (!request.headers) {
+                    request.headers = {};
+                }
+
+                request.headers['Authorization'] = 'Bearer ' + token;
+            }
+        }
+
         try {
             var fetchResponse = await this.http.fetch(endPoint, request);
         } catch (error) {
@@ -41,8 +59,18 @@ export class Network {
         if (fetchResponse.status >= 200 && fetchResponse.status < 300
             && fetchResponse.status !== 204 && fetchResponse.status !== 205) {
             try {
-                response.data = await fetchResponse.json();
-                response.hasData = true;
+                console.log(response);
+                if (dataType === ExpectedResponseType[ExpectedResponseType.json] || dataType === undefined) {
+                    response.data = await fetchResponse.json();
+                    response.hasData = true;
+                    return response;
+                } else if (dataType === ExpectedResponseType[ExpectedResponseType.blob]) {
+                    response.data = await fetchResponse.blob();
+                    response.hasData = true;
+                    return response;
+                }
+                // response.data = await fetchResponse.json();
+                // response.hasData = true;
             } catch (error) {
                 response.hasData = false;
             }
@@ -60,7 +88,8 @@ export class Network {
             status: fetchResponse.status,
             data: undefined,
             url: fetchResponse.url,
-            type: fetchResponse.type
+            type: fetchResponse.type,
+            headers: fetchResponse.headers
         };
 
         return response;
@@ -79,4 +108,5 @@ export interface NetworkResponse {
     status: number;
     url: string;
     type: string;
+    headers: Headers;
 }

@@ -5,7 +5,7 @@ page-header {
 
   h1 {
     font-size: 24px;
-    color: $color-primary-lightest;
+    color: $color-primary-text;
     padding: 16px;
     margin: 0;
   }
@@ -24,7 +24,7 @@ page-header {
 
   li a {
     display: block;
-    color: $color-secondary-lightest;
+    color: $color-secondary-text;
     text-align: center;
     padding: 8px 8px;
     text-decoration: none;
@@ -32,11 +32,11 @@ page-header {
 
   li a:hover {
     background-color: $color-secondary-lighter;
-    color: $color-secondary-lightest;
+    color: $color-secondary-text;
   }
 
   li a:visited,
   li a:focus {
-    color: $color-secondary-lightest;
+    color: $color-secondary-text;
   }
 }

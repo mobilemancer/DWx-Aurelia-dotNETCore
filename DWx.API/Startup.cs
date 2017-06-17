@@ -1,4 +1,5 @@
-﻿using DWx.Repository.Repository;
+﻿using System;
+using DWx.Repository.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-
+using System.Text;
 
 namespace DWx.API
 {
@@ -27,6 +28,8 @@ namespace DWx.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization();
+
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
@@ -49,14 +52,40 @@ namespace DWx.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            //var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("CD7TQJmvM4RNwYWZwfgzkHZ"));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("a3QN0BZS7s4nN-BdrjbF0Y_LdMM"));
+
+            var tokenValidationParameters = new TokenValidationParameters
             {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                Audience = "resource_server_1",
-                Authority = "http://localhost:50000/",
-                RequireHttpsMetadata = false
-            });
+                //// The signing key must match!
+                //ValidateIssuerSigningKey = true,
+                //IssuerSigningKey = signingKey,
+
+                //// Validate the JWT Issuer (iss) claim
+                //ValidateIssuer = true,
+                ValidateIssuer = false,
+                //ValidIssuer = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0",
+
+                //// Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                //ValidateAudience = false,
+                //ValidAudience = "233b8b15-868c-4125-b954-e64ae7c8e3a8",
+
+                // Validate the token expiry
+                ValidateLifetime = true,
+
+                // If you want to allow a certain amount of clock drift, set that here:
+                ClockSkew = TimeSpan.Zero
+            };
+
+            var options = new JwtBearerOptions
+            {
+                Audience = Configuration["Authentication:MicrosoftIdentity:ClientId"],
+                Authority = Configuration["Authentication:MicrosoftIdentity:Authority"],
+                TokenValidationParameters = tokenValidationParameters
+            };
+
+            app.UseJwtBearerAuthentication(options);
 
             app.UseCors("AureliaSPA");
 

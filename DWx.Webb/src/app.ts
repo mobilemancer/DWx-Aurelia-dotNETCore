@@ -73,7 +73,7 @@ export class App {
             { route: ['', 'home'], name: 'home', moduleId: 'views/home/index', title: 'Home', nav: false },
             {
                 route: 'droids', name: 'droids', moduleId: 'views/droids/list', title: 'Droids', nav: 2,
-                settings: { auth: true }
+                settings: { auth: false }
             },
             // {
             //     route: 'user', name: 'user', moduleId: 'views/user/index', title: 'USER', nav: 3,

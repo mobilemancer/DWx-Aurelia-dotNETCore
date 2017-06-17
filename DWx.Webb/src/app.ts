@@ -70,15 +70,15 @@ export class App {
 
         config.title = 'Droid Worx';
         config.map([
-            { route: ['', 'home'], name: 'home', moduleId: 'views/home/index', title: 'Home', nav: 1 },
+            { route: ['', 'home'], name: 'home', moduleId: 'views/home/index', title: 'Home', nav: false },
             {
                 route: 'droids', name: 'droids', moduleId: 'views/droids/list', title: 'Droids', nav: 2,
                 settings: { auth: true }
             },
-            {
-                route: 'user', name: 'user', moduleId: 'views/user/index', title: 'USER', nav: 3,
-                settings: { auth: true }
-            },
+            // {
+            //     route: 'user', name: 'user', moduleId: 'views/user/index', title: 'USER', nav: 3,
+            //     settings: { auth: true }
+            // },
             {
                 route: 'droids/:id',
                 name: 'droidInfo',
@@ -96,9 +96,9 @@ export class App {
             {
                 route: 'login', name: 'login', moduleId: 'views/home/login', nav: false
             },
-            {
-                route: 'logout', name: 'logout', moduleId: 'views/home/logout', title: 'Logout', nav: 0
-            }
+            // {
+            //     route: 'logout', name: 'logout', moduleId: 'views/home/logout', title: 'Logout', nav: 0
+            // }
 
         ]);
         config.mapUnknownRoutes('views/home/index');

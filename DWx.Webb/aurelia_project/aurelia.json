@@ -4,8 +4,9 @@
   "platform": {
     "id": "aspnetcore",
     "displayName": "ASP.NET Core",
-    "output": "wwwroot\\scripts",
-    "index": "index.html",
+    "output": "wwwroot/scripts",
+    "index": "wwwroot/index.html",
+    "baseDir": "./wwwroot",
     "baseUrl": "scripts"
   },
   "transpiler": {
@@ -13,22 +14,21 @@
     "displayName": "TypeScript",
     "fileExtension": ".ts",
     "dtsSource": [
-      "./typings/**/*.d.ts",
       "./custom_typings/**/*.d.ts"
     ],
-    "source": "src\\**\\*.ts"
+    "source": "src/**/*.ts"
   },
   "markupProcessor": {
-    "id": "none",
-    "displayName": "None",
+    "id": "maximum",
+    "displayName": "Maximum Minification",
     "fileExtension": ".html",
-    "source": "src\\**\\*.html"
+    "source": "src/**/*.html"
   },
   "cssProcessor": {
     "id": "sass",
     "displayName": "Sass",
     "fileExtension": ".scss",
-    "source": "src\\**\\*.scss"
+    "source": "src/**/*.scss"
   },
   "editor": {
     "id": "visualstudio",
@@ -37,37 +37,28 @@
   "unitTestRunner": {
     "id": "karma",
     "displayName": "Karma",
-    "source": "test\\unit\\**\\*.ts"
+    "source": "test/unit/**/*.ts"
   },
   "paths": {
     "root": "src",
-    "resources": "src\\resources",
-    "elements": "src\\resources\\elements",
-    "attributes": "src\\resources\\attributes",
-    "valueConverters": "src\\resources\\value-converters",
-    "bindingBehaviors": "src\\resources\\binding-behaviors"
+    "resources": "resources",
+    "elements": "resources/elements",
+    "attributes": "resources/attributes",
+    "valueConverters": "resources/value-converters",
+    "bindingBehaviors": "resources/binding-behaviors"
   },
   "testFramework": {
     "id": "jasmine",
     "displayName": "Jasmine"
-  },
-  "e2eTestRunner": {
-    "id": "protractor",
-    "displayName": "Protractor",
-    "source": "test/e2e/src/**/*.ts",
-    "dist": "test/e2e/dist/",
-    "typingsSource": [
-      "typings/**/*.d.ts",
-      "custom_typings/**/*.d.ts"
-    ]
   },
   "build": {
     "targets": [
       {
         "id": "aspnetcore",
         "displayName": "ASP.NET Core",
-        "output": "wwwroot\\scripts",
-        "index": "index.html",
+        "output": "wwwroot/scripts",
+        "index": "wwwroot/index.html",
+        "baseDir": "./wwwroot",
         "baseUrl": "scripts"
       }
     ],
@@ -102,7 +93,8 @@
         "name": "vendor-bundle.js",
         "prepend": [
           "node_modules/bluebird/js/browser/bluebird.core.js",
-          "wwwroot\\scripts/require.js"
+          "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
+          "node_modules/requirejs/require.js"
         ],
         "dependencies": [
           "aurelia-binding",
@@ -126,11 +118,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
-          "aurelia-fetch-client",
-          {
-            "name": "text",
-            "path": "../wwwroot\\scripts/text"
-          },
+          "text",
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -146,6 +134,18 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "dev"
+          },
+          {
+            "name": "aurelia-fetch-client",
+            "main": "aurelia-fetch-client",
+            "path": "../node_modules/aurelia-fetch-client/dist/amd",
+            "resources": []
+          },
+          {
+            "name": "aurelia-configuration",
+            "main": "index",
+            "path": "../node_modules/aurelia-configuration/dist/amd",
+            "resources": []
           }
         ]
       }

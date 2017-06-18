@@ -4,19 +4,34 @@ import { NetworkResponse } from './network';
 import { autoinject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-fetch-client';
 import { TokenType } from "../enums/tokenType";
+import { AureliaConfiguration } from 'aurelia-configuration';
 
 @autoinject
 export class Network {
 
-    constructor(private http: HttpClient) {
-        if (http) {
-            http.configure(config => {
-                config
-                    .useStandardConfiguration();
-                // .withBaseUrl(baseUrl);
-            });
+    // constructor(private http: HttpClient) {
+    //     if (http) {
+    //         http.configure(config => {
+    //             config
+    //                 .useStandardConfiguration();
+    //             // .withBaseUrl(baseUrl);
+    //         });
+    //     }
+    // }
+
+    constructor(private http: HttpClient, private configuration: AureliaConfiguration, ) {
+        // check if the configuration environment matches specified configs (see main.ts)
+        if (!configuration.environmentExists()) {
+            alert("Error! No configuration exists that is matching the used host address!");
+            throw ("No configuration matching used host address!");
         }
-    }
+
+        http.configure(config => {
+            config
+                .useStandardConfiguration()
+                .withBaseUrl(configuration.get("api.endpoint"));
+        });
+    };
 
     public async request(endPoint: string, request?: RequestInit, authorizationType?: TokenType | undefined, dataType?: string | undefined): Promise<NetworkResponse> {
         var response: any;

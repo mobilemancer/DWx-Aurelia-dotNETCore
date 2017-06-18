@@ -1,18 +1,10 @@
 import * as gulp from 'gulp';
 import * as browserSync from 'browser-sync';
 import * as historyApiFallback from 'connect-history-api-fallback/lib';
+import {CLIOptions} from 'aurelia-cli';
 import * as project from '../aurelia.json';
 import build from './build';
-import { CLIOptions, build } from 'aurelia-cli';
-
-function onChange(path) {
-  console.log(`File Changed: ${path}`);
-}
-
-function reload(done) {
-  browserSync.reload();
-  done();
-}
+import watch from './watch';
 
 let serve = gulp.series(
   build,
@@ -23,46 +15,40 @@ let serve = gulp.series(
       port: 9000,
       logLevel: 'silent',
       server: {
-        baseDir: ['.'],
-        middleware: [historyApiFallback(), function (req, res, next) {
+        baseDir: [project.platform.baseDir],
+        middleware: [historyApiFallback(), function(req, res, next) {
           res.setHeader('Access-Control-Allow-Origin', '*');
           next();
         }]
       }
     }, function (err, bs) {
+      if (err) return done(err);
       let urls = bs.options.get('urls').toJS();
-      console.log(`Application Available At: ${urls.local}`);
-      console.log(`BrowserSync Available At: ${urls.ui}`);
+      log(`Application Available At: ${urls.local}`);
+      log(`BrowserSync Available At: ${urls.ui}`);
       done();
     });
   }
 );
 
-let refresh = gulp.series(
-  build,
-  reload
-);
+function log(message) {
+  console.log(message);
+}
 
-let watch = function () {
-  gulp.watch(project.transpiler.source, refresh).on('change', onChange);
-  gulp.watch(project.markupProcessor.source, refresh).on('change', onChange);
-  gulp.watch(project.cssProcessor.source, refresh).on('change', onChange);
+function reload() {
+  log('Refreshing the browser');
+  browserSync.reload();
 }
 
 let run;
 
 if (CLIOptions.hasFlag('watch')) {
-  //  run = gulp.series(
-  //     serve,
-  //     watch
-  //   );
   run = gulp.series(
-    build,
-    watch
+    serve,
+    done => { watch(reload); done(); }
   );
 } else {
-  // run = serve;
-  run = build;
+  run = serve;
 }
 
 export default run;

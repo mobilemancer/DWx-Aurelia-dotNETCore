@@ -1,5 +1,5 @@
 droid-tile {
-  @include outer-container;
+  // @include outer-container;
   display: block;
 
   .tile {
@@ -13,18 +13,18 @@ droid-tile {
     vertical-align: middle;
 
     .row {
-      @include row();
+      // @include row();
 
       .hero-text {
         font-size: 120%;
       }
 
       .first {
-        @include span-columns(8);
+        // @include span-columns(8);
       }
 
       .second {
-        @include span-columns(4);
+        // @include span-columns(4);
       }
     }
   }

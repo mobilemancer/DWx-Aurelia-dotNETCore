@@ -1,0 +1,18 @@
+{
+    "name": "Droid Worx",
+    "development": {
+        "api": {
+            "endpoint": "https://localhost:5043/api/"
+        }
+    },
+    "staging": {
+        "api": {
+            "endpoint": "https://droidworx-api.azurewebsites.net"
+        }
+    },
+    "production": {
+        "api": {
+            "endpoint": "https://droidworx-api.azurewebsites.net"
+        }
+    }
+}
